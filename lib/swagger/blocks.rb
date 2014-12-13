@@ -13,12 +13,12 @@ module Swagger
       base.extend(ClassMethods)
     end
 
-    module_function def build_root_json(swaggered_classes)
+     def self.build_root_json(swaggered_classes)
       data = Swagger::Blocks::InternalHelpers.parse_swaggered_classes(swaggered_classes)
       data[:root_node].as_json
     end
 
-    module_function def build_api_json(resource_name, swaggered_classes)
+    def self.build_api_json(resource_name, swaggered_classes)
       data = Swagger::Blocks::InternalHelpers.parse_swaggered_classes(swaggered_classes)
       api_node = data[:api_node_map][resource_name.to_sym]
       raise Swagger::Blocks::NotFoundError.new(
