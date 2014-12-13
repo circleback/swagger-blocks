@@ -26,9 +26,9 @@ module Swagger
 
       # Aggregate all model definitions into a new ModelsNode tree and add it to the JSON.
       temp_models_node = Swagger::Blocks::ModelsNode.call(name: 'models') { }
-      data[:models_nodes].each do |models_node|
+      data[:models_nodes].each{ |models_node|
         temp_models_node.merge!(models_node)
-      end
+      }
       result = api_node.as_json
       result.merge!(temp_models_node.as_json) if temp_models_node
       result
